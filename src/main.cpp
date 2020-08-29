@@ -2,7 +2,8 @@
 
 #include <SDL2/SDL.h>
 
-
+bool Running = true;
+SDL_Event mainEvent;
 
 int main(int argc, char **argv)
 {
@@ -20,8 +21,16 @@ int main(int argc, char **argv)
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 
-    while (true) {
-        // main application loop
+    // main application loop
+    while (Running) {
+        
+        // main application events
+        while (SDL_PollEvent(&mainEvent)) {
+            // Quit event
+            if (mainEvent.type == SDL_QUIT) {
+                Running = false;
+            }
+        }
 
     }
 
